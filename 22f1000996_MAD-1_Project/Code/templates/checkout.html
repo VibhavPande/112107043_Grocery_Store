@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/checkout.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="user-area">{{ current_user.fname }}'s Cart</li>
+            <li class="profile"><button onclick="location.href='/user/profile';" class="nav-btn">My Profile</button></li>
+            <li class="dashboard">
+                {% if my_cart['Buy'] == 1 %}
+                <button onclick="location.href='/user/{{ my_cart['cart_id'] }}/back_without_buying';" class="nav-btn">Dashboard</button>
+                {% else %}
+                <button onclick = " location.href = '/user/dashboard';" class="nav-btn">Dashboard</button>
+                {% endif %}
+            </li>
+            <li class="log-out">
+                <form action = "/log_out" method = "POST">
+                    <button type="submit" onclick="return confirm('Sure to Logout ? ');" class="nav-btn">Log Out</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    {% if my_cart %}
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col" colspan="2">Product</th>
+                <th scope="col">Category</th>
+                <th scope="col">Rate</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for prod in my_cart['products'] %}
+                <tr>
+                    <td>{{ prod['prod_name'] }}</td>
+                    <td><img src="{{ prod['image'] }}" alt="prod_image" style="height: 100px;"></td>
+                    <td>{{ prod['category'] }}</td>
+                    <!-- <td>{{ prod['quantity'] }}</td> -->
+                    <td>Rs {{ prod['rate'] }} / {{ prod['unit'] }}</td>
+                    <td>
+                        <form action = "/user/{{ my_cart['cart_id'] }}/{{ prod['prod_id'] }}/change_quantity" method = "POST">
+                            <!-- <button type="submit" name = "remove" value="remove">Remove From Cart</button> -->
+                            <label for="quantity">Quantity:</label>
+                            <button type="submit" name = "quantity_button" value="decrease" class="nav-btn">-</button>
+                                {{ prod['quantity'] }} {{ prod['unit'] }}
+                                <!-- <input type="number" id="quantity" name="quantity" value="{{ prod['quantity'] }}" max="{{ prod['max_quantity'] }}" min="1"> -->
+                            <button type="submit" name = "quantity_button" value="increase" {% if prod['max_quantity'] == 0 %} disabled {% endif %} class="nav-btn">+</button>
+                        </form>     
+                    </td>
+                    <td>Rs {{ prod['price'] }}</td>
+                    <td>
+                        <form action = "/user/{{ my_cart['cart_id'] }}/{{ prod['prod_id'] }}/remove_from_cart" method = "POST">
+                            <button type="submit" name = "remove" value="remove" onclick="return confirm('Are you sure you want to remove this from Cart?');" class="nav-btn">Remove From Cart</button>
+                        </form> 
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p style="font-size: 25px; font-weight: bold;">Grand Total = Rs {{ my_cart['total'] }}</p>
+    </div>
+    <form action="/user/{{ my_cart['cart_id'] }}/proceed_to_buy" method = "POST">
+        <button type="submit" name = "proceed_button" value="proceedtobuy" onclick="return confirm('Sure to Proceed to Buy ?');" class="nav-btn" style="margin-left: 10px;">BUY</button>
+    </form>
+    {% else %}
+    <div class="empty">
+        Cart Empty !!!
+    </div>
+    {% endif %}
+</body>
+</html>

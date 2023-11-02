@@ -1,0 +1,41 @@
+body{
+    background-image:url("homepage.jpg");
+    background-size :1500px 900px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+}
+
+.heading{
+    font-size: 75px;
+    position: absolute;
+    top: 35%;
+    left: 20%;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.546);
+}
+
+.btn {
+    margin: 5px;
+    font-size: 20px;
+    width: fit-content;
+    background-color: #4a77d4; 
+    color: white;
+    position: relative;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+    border-radius: 10px;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    background-color: #3662b6;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
+}
+
+.options{
+    position: absolute;
+    top: 50%;
+    left:35.5%
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/user_dash.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li class="user-area">{{ current_user.fname }}'s Area</li>
+            <li class="search">
+                <form action = "/user/search" method = "POST">
+                    <label for="search"></label>
+                    <input type="text" id="search" name="search" >
+        
+                    <input type="submit" value="Search" class="nav-btn">
+                </form>
+            </li>
+            <li class="profile"><button onclick="location.href='/user/profile';" class="nav-btn">My Profile</button></li>
+            <li class="cart"><button onclick= "location.href='/user/viewcart';" class="nav-btn">View Cart</button></li>
+            <li class="log-out">
+                <form action = "/log_out" method = "POST">
+                    <button type="submit" onclick="return confirm('Sure to Logout ? ');" class="nav-btn">Log Out</button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div id="flash">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div>
+
+        {% if not category_list %}
+        <p>No Items Found !!!!</p>
+        {% endif %}
+    </div>
+    {% for category, products in category_list.items() %}
+    {% if image_list[category] %}
+    <div class="category" style=" background-image: url({{ image_list[category] }}); background-size: 100% auto; ">
+    {% else %}
+    <div class="category">
+    {% endif %}
+        <h1>{{ category }}</h1>
+        {% for prod in products %}
+                {% if prod['image'] %}
+                    <div class="product-card" style=" background-image: url({{ prod['image'] }}); background-size: auto 100%; background-position: center center; ">
+                {% else %}
+                    <div class="product-card">
+                {% endif %}
+                <h2>{{ prod["prod_name"] }}</h2>
+                <div class="content">
+                Rate : Rs {{ prod["price"] }}/{{ prod["per"] }}
+                Quantity : {{ prod["quantity"] }} {{ prod["per"] }}
+                </div>
+                {% if prod['quantity'] == 0 %}
+                    <p class="out-of-stock">Out of Stock</p>
+                {% else %}
+                <div class="actions">
+                    <form method="POST" action="/user/{{ prod['prod_id'] }}/checkout">
+                        <label for="quantity" style="font-size: 15px; font-weight: bold;">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" value="1" max="{{ prod['quantity'] }}" min="1">
+                        <button type="submit" name="button" value="addtocart" onclick="alert('{{ prod['prod_name'] }}' + ' added to cart successfully!')" class="nav-btn">Add To Cart</button>
+                        <button type="submit" name = "button" value="buy" class="nav-btn">BUY</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</body>
+</html>

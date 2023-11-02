@@ -1,0 +1,92 @@
+body{
+    background-image: url("signup_image.jpg");
+    background-size:100% auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    margin: 0;
+    padding: 0;
+}
+
+#flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 25px; 
+    background-color: rgba(255, 0, 0, 0.431);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-size: 75px;
+    position: absolute;
+    top:33%;
+    left:14%;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.279);
+    transform: rotate(-15deg);
+}
+
+.signup {
+    margin: -150px 0 0 -150px;
+    position: absolute;
+    top:30%;
+    left:67%;
+    width:400px;
+}
+
+input{
+    position: relative;
+    background-color: transparent;
+    colour:white;
+    left: 10%;
+    width: 80%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.567);
+    border-radius: 5px;
+    box-shadow: inset 0 -3px 35px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.signup input[type="text"],
+.signup input[type="email"],
+.signup input[type="password"],
+.signup input[type = "number"] {
+    font-size: 15px;
+    position: relative;
+    background-color: transparent;
+    color: white;
+    left: 10%;
+    width: 80%;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.567);
+    border-radius: 5px;
+    box-shadow: inset 0 -3px 35px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.signup input[type="text"]::placeholder,
+.signup input[type="email"]::placeholder,
+.signup input[type="number"]::placeholder,
+.signup input[type="password"]::placeholder {
+    color: #ffffff;
+}
+
+.btn {
+    font-size: 15px;
+    width: 35%;
+    background-color: #4a77d4; 
+    color: white;
+    position: relative;
+    left: 35%;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+}
+
+.btn:hover {
+    background-color: #3662b6;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
+}

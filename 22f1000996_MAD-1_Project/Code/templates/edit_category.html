@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/edit.css">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div id="flash">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="edit" style="top:40%">
+        <h1 style="margin-bottom: 50px;">Edit Category</h1>
+    <form action = "/manager/{{ category }}/update" method="POST">
+        <div class="form-group">
+            <label for="Category_name" >Category Name :</label>
+            <input type="text" id="name" name="Category_name" value="{{ category }}"  required >
+        </div>
+
+        <input type="submit" value="Submit" onclick="return confirm('Are You Sure You Want to Edit This ? ');">
+    </form>
+    </div>
+
+    <a href = "/manager/dashboard" style="position: absolute; top: 60%; left:71%; font-size: 20px; color: rgb(0, 0, 0);">Back</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div id="flash">
+            {% for message in messages %}
+                {% if message == 'Invalid Login Please Retry' %}
+                    {{ message }} or <a href="/signup" style="margin-left:0.5%;"> Sign Up</a>
+                {% elif message == 'Incorrect Password' %}
+                    {{ message }} Please retry
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <div class="login">
+        <h1>User Login</h1>
+    <form action="/user/login" method="POST">
+        <input type="email" id="email" name="email" required placeholder="Email">
+        <input type="password" id="password" name="password" required placeholder="Password">
+        <input type="submit" value="LOGIN" class="btn">
+    </form>
+    </div>
+    <a href = "/" style="position: absolute; top: 59%; left:77.5%; font-size: larger;">Home</a>
+</body>
+</html>

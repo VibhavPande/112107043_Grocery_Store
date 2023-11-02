@@ -1,0 +1,126 @@
+body{
+    background-image: url("restock.jpg");
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position: center center;
+    margin: 0;
+    padding: 0;
+}
+
+#flash {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 25px; 
+    background-color: rgba(255, 0, 0, 0.431);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    position: absolute;
+    font-size: 80px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.279);
+    top:8%;
+    right:63%;
+}
+
+
+.restock {
+    margin: -150px 0 0 -150px;
+    position: absolute;
+    top:50%;
+    right:67%;
+    width:400px;
+}
+
+.restock h2{
+    font-size: 30px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.279);
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+input{
+    position: relative;
+    background-color: transparent;
+    colour:white;
+    left: 10%;
+    width: 80%;
+    margin-bottom: 12px;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.567);
+    border-radius: 5px;
+    box-shadow: inset 0 -3px 35px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+}
+
+label{
+    position: absolute;
+    top: 87%;
+    right:66%;
+    color: #000000;
+    font-size: 17px;
+}
+
+
+.restock input[type="text"],
+.restock input[type="email"],
+.restock input[type="password"],
+.restock input[type = "number"] {
+    font-size: 15px;
+    position: relative;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    left: 10%;
+    width: 80%;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.567);
+    border-radius: 5px;
+    box-shadow: inset 0 -3px 35px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.restock input[type = "date"]{
+    font-size: 15px;
+    position: relative;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    left: 40%;
+    width: 50%;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.567);
+    border-radius: 5px;
+    box-shadow: inset 0 -3px 35px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.restock input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}
+
+.restock input[type="text"]::placeholder,
+.restock input[type="email"]::placeholder,
+.restock input[type="number"]::placeholder,
+.restock input[type="password"]::placeholder {
+    color: #000000;
+}
+
+.btn {
+    font-size: 15px;
+    width: 35%;
+    background-color: #4a77d4; 
+    color: white;
+    position: absolute;
+    top:100%;
+    left:30%;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+}
+
+.btn:hover {
+    background-color: #3662b6;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); 
+}

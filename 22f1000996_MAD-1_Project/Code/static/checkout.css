@@ -1,0 +1,88 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    margin: auto;
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+nav ul {
+    display: flex;
+}
+
+li.user-area{
+    font-size: 35px;
+    margin-right: auto; 
+}
+
+li.log-out {
+    margin-top: 0.7%;
+    margin-left: 0.7%;
+    margin-right: 0.5%;
+    order: 5; 
+}
+
+li.dashboard{
+    margin-top: 0.7%;
+    order: 3; 
+}
+
+li.profile{
+    margin-top: 0.7%;
+    margin-left: 0.7%;
+    order: 4; 
+}
+
+
+.nav-btn {
+    font-size: 15px;
+    background-color: #ffffff; 
+    border-radius: 5px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(83, 83, 83, 0.3); 
+}
+
+.nav-btn:hover {
+    background-color: #645f5f;
+    box-shadow: 0 6px 15px rgba(89, 89, 89, 0.241); 
+}
+
+body{
+    background-image: url("checkout_image.jpg");
+    background-size:100% 113%;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-position: center center;
+}
+
+.empty{
+    font-size: 35px;
+    position: absolute;
+    top: 45%;
+    left:40%;
+}
+
+.table.table-striped thead{
+    background-color: #ffffff;
+    font-size: 25px;
+}
+
+.table.table-striped tbody tr:nth-child(odd){
+    background-color: #00000063;
+    color: white;
+    font-size: 15px;
+}
+
+.table.table-striped tbody tr:nth-child(even){
+    background-color: #ffffff77;
+    font-weight: bold;
+    font-size: 15px;
+}

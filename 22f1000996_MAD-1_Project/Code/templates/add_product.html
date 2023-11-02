@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/restock.css">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div id="flash">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <h1>Add Product</h1>
+    <div class="restock">
+    <form action="/manager/{{ category }}/add_product" method="POST">
+        <input type="hidden" name="category" value="{{ category }}">
+        <h2>Category: {{ category }}</h2>
+        <input type="text" id="name" name="product_name" required placeholder="Product Name">
+        <input type="text" id="price" name="price" required placeholder="Price in Rs">
+        <input type="text" id="price_unit" name="price_unit" required placeholder="Price Unit">
+        <input type="text" id="quantity" name="quantity" required placeholder="Quantity">
+        <label for="expiryDate">Expiry Date</label>
+        <input type="date" id="expiryDate" name="expiryDate">
+        <input type="submit" value="Submit" class="btn">
+    </form>
+    </div>
+    <a href = "/manager/dashboard" style="position: absolute; top: 82%; right:80%; font-size: 20px; color: rgb(0, 0, 0);">Back</a>
+</body>
+</html>

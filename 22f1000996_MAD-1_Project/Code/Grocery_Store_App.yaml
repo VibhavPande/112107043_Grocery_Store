@@ -1,0 +1,195 @@
+openapi: 3.0.0
+info:
+  title: Category CRUD API
+  description: An API for managing categories and products.
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000/
+  
+paths:
+  /api/manager/category/add:
+    post:
+      summary: Create a new category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Category_name:
+                  type: string
+      responses:
+        '201':
+          description: Category Added Successfully
+        '400':
+          description: Bad Request - Category Already Exists
+  /api/manager/category/{category}:
+    parameters:
+      - in: path
+        name: category
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Get a category by name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Cat_id:
+                    type: integer
+                  Cat_name:
+                    type: string
+        '404':
+          description: Not Found - Category Not Found
+    put:
+      summary: Update a category by name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Category_name:
+                  type: string
+      responses:
+        '201':
+          description: Category Updated Successfully
+        '400':
+          description: Bad Request - Category Already Exists
+        '404':
+          description: Not Found - Category Not Found
+    delete:
+      summary: Delete a category by name
+      responses:
+        '201':
+          description: Category Deleted Successfully
+        '404':
+          description: Not Found - Category Not Found
+          
+  /api/manager/product/{prod_id}:
+    parameters:
+      - in: path
+        name: prod_id
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Get a product by ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductOutput'
+        '404':
+          description: Not Found - Product Not Found
+    delete:
+      summary: Delete a product by ID
+      responses:
+        '201':
+          description: Created - Product Deleted Successfully
+        '400':
+          description: Bad Request - Product Not Found
+    
+    put:
+      summary: Update a product by ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdateInput'
+      responses:
+        '201':
+          description: Created - Product Updated Successfully
+        '400':
+          description: Bad Request - Product Not Found
+        '422':
+          description: Unprocessable Entity - Expiry Date Should be after today
+
+  /api/manager/product/add:
+    post:
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: Created - Product Added Successfully
+        '400':
+          description: Bad Request - Product Already Exists
+        '404':
+          description: Not Found - Category Not Found
+        '422':
+          description: Unprocessable Entity - Expiry Date Should be after today
+components:
+  schemas:
+    ProductOutput:
+      type: object
+      properties:
+        Prod_id:
+          type: integer
+        Prod_name:
+          type: string
+        Prod_price_rs:
+          type: integer
+        Price_per:
+          type: string
+        Quantity:
+          type: integer
+        is_Expired:
+          type: integer
+        Cat_name:
+          type: string
+    ProductInput:
+      type: object
+      properties:
+        Prod_name:
+          type: string
+        Prod_price_rs:
+          type: integer
+        Price_per:
+          type: string
+        Quantity:
+          type: integer
+        Expiry_date:
+          type: string
+          format: date
+        Cat_name:
+          type: string
+      required:
+        - Prod_name
+        - Prod_price_rs
+        - Price_per
+        - Quantity
+        - Cat_name
+    ProductUpdateInput:
+      type: object
+      properties:
+        Prod_name:
+          type: string
+        Prod_price_rs:
+          type: integer
+        Price_per:
+          type: string
+        Quantity:
+          type: integer
+        Expiry_date:
+          type: string
+          format: date
+      required:
+        - Prod_name
+        - Prod_price_rs
+        - Price_per
+        - Quantity

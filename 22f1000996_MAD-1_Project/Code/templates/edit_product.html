@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/edit.css">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div id="flash">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    <div class="edit">
+        <h1>Edit Product</h1>
+    <form action = "/manager/{{ prod['Prod_id'] }}/edit_product" method = "POST">
+        <div class="form-group">
+            <label for="product_name">Product Name :</label>
+            <input type="text" id="name" name="product_name" value="{{ prod['Prod_name'] }}"  required >
+        </div>
+        
+        <div class="form-group"> 
+            <label for="price">Price in Rs :</label>
+            <input type="text" id="price" name="price"  value="{{ prod['Prod_price_rs'] }}" required >
+        </div>
+
+        <div class = "form-group">
+            <label for="price_unit">Price Unit :</label>
+            <input type="text" id="price_unit" name="price_unit"  value="{{ prod['Price_per'] }}" required >
+        </div>
+
+        <div class="form-group">
+            <label for="quantity">Quantity :</label>
+            <input type="text" id="quantity" name="quantity"  value="{{ prod['Quantity'] }}" required >
+        </div>
+
+        <div class="form-group">
+            <label for="expiryDate">Expiry Date :</label>
+            <input type="date" id="expiryDate" name="expiryDate">
+        </div>
+
+        <input type="submit" value="Submit" onclick="return confirm('Are You Sure You Want to Edit This ? ');">
+    </form>
+    </div>
+    <a href = "/manager/dashboard" style="position: absolute; top: 81%; left:71%; font-size: 20px; color: rgb(0, 0, 0);">Back</a>
+</body>
+</html>

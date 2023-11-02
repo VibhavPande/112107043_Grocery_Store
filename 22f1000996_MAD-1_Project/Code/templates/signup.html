@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/signup.css">
+</head>
+<body>
+    <h1>Sign Up</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div id="flash">
+            {% for message in messages %}
+                {% if message == 'User Already Exists' %}
+                    {{ message }} Go to <a href="/user_login">login page</a>
+                {% elif message == 'Password And Confirm Password Do Not Match' %}
+                    {{ message }}
+                {% elif message == 'Invalid email id' %}
+                    {{ message }}
+                {% elif message == 'Passwords Cannot Contain Spaces' %}
+                    {{ message }}
+                {% elif message == 'Contact Must Be Exactly 10 digits' %}
+                    {{ message }}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <div class="signup">
+    <form action = "/signup" method = "POST">
+        <input type="email" id="email" name="email" required placeholder="Email">
+        <input type="text" id="fname" name="fname" required placeholder="First Name">
+        <input type="text" id="lname" name="lname" required placeholder="Last Name">
+        <input type="number" id="contact" name="contact" required placeholder="Contact">
+        <input type="password" id="password" name="password" required placeholder="Password">
+        <input type="password" id="password_confirm" name="password_confirm" required placeholder="Confirm Password">
+        
+        <input type="submit" value="SUBMIT" class="btn">
+    </form>
+    </div>
+    <a href = "/" style="position: absolute; top: 56%; left:69.5%; font-size: 20px; color: white;">Home</a>
+</body>
+</html>
